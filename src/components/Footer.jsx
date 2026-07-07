@@ -1,0 +1,131 @@
+import Link from "next/link";
+import {
+  FaFacebookF,
+  FaGithub,
+  FaInstagram,
+  FaLinkedinIn,
+} from "react-icons/fa";
+
+const Footer = () => {
+  return (
+    <footer className="bg-slate-900 text-gray-300 mt-20">
+      <div className="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+
+        {/* Brand */}
+        <div>
+          <h2 className="text-3xl font-bold text-yellow-400">
+            SunCart
+          </h2>
+          <p className="mt-4 text-sm leading-6">
+            Your one-stop summer essentials store.
+            Discover sunglasses, skincare, beach accessories,
+            fashion and more.
+          </p>
+        </div>
+
+        {/* Quick Links */}
+        <div>
+          <h3 className="text-xl font-semibold text-white mb-4">
+            Quick Links
+          </h3>
+
+          <ul className="space-y-3">
+            <li>
+              <Link href="/" className="hover:text-yellow-400">
+                Home
+              </Link>
+            </li>
+
+            <li>
+              <Link href="/products" className="hover:text-yellow-400">
+                Products
+              </Link>
+            </li>
+
+            <li>
+              <Link href="/profile" className="hover:text-yellow-400">
+                My Profile
+              </Link>
+            </li>
+          </ul>
+        </div>
+
+        {/* Contact */}
+        <div>
+          <h3 className="text-xl font-semibold text-white mb-4">
+            Contact
+          </h3>
+
+          <ul className="space-y-3 text-sm">
+            <li>📍 Rangpur, Bangladesh</li>
+            <li>📧sahadathussain872856@gmail.com</li>
+            <li>📞 +880 1328654064</li>
+          </ul>
+        </div>
+
+        {/* Social */}
+        <div>
+          <h3 className="text-xl font-semibold text-white mb-4">
+            Follow Us
+          </h3>
+
+          <div className="flex gap-4 text-xl">
+            <a
+              href="#"
+              className="bg-white/10 p-3 rounded-full hover:bg-yellow-400 hover:text-black duration-300"
+            >
+              <FaFacebookF />
+            </a>
+
+            <a
+              href="#"
+              className="bg-white/10 p-3 rounded-full hover:bg-yellow-400 hover:text-black duration-300"
+            >
+              <FaInstagram />
+            </a>
+
+            <a
+              href="#"
+              className="bg-white/10 p-3 rounded-full hover:bg-yellow-400 hover:text-black duration-300"
+            >
+              <FaGithub />
+            </a>
+
+            <a
+              href="#"
+              className="bg-white/10 p-3 rounded-full hover:bg-yellow-400 hover:text-black duration-300"
+            >
+              <FaLinkedinIn />
+            </a>
+          </div>
+
+          <div className="mt-6">
+            <Link
+              href="/privacy"
+              className="text-sm hover:text-yellow-400"
+            >
+              Privacy Policy
+            </Link>
+          </div>
+        </div>
+      </div>
+
+      {/* Bottom Footer */}
+      <div className="border-t border-slate-700">
+        <div className="max-w-7xl mx-auto px-6 py-5 flex flex-col md:flex-row justify-between items-center text-sm">
+
+          <p>
+            © 2026 <span className="text-yellow-400">SunCart</span>. All Rights Reserved.
+          </p>
+
+          <p className="mt-3 md:mt-0">
+            Made with ❤️ using Next.js & HeroUI
+          </p>
+
+        </div>
+      </div>
+    </footer>
+  );
+};
+
+export default Footer;
