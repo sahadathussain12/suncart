@@ -31,7 +31,7 @@ const SummerSaleBanner = () => {
             <p className="mt-6 text-lg text-gray-600 max-w-lg">
               Discover the hottest summer essentials including sunglasses,
               fashion, skincare, beach accessories and much more.
-              Limited-time offer. Shop now before it's gone.
+              Limited-time offer. Shop now before  gone.
             </p>
 
             <div className="flex flex-wrap gap-4 mt-8">
