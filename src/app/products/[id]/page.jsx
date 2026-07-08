@@ -4,7 +4,7 @@ import { Button } from "@heroui/react";
 const ProductDetailsPage = async ({ params }) => {
   const { id } = await params;
 
-  const res = await fetch("http://localhost:3000/product.json", {
+  const res = await fetch("https://suncart-kuxb.vercel.app/product.json", {
     cache: "no-store",
   });
 
