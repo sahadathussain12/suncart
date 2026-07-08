@@ -4,7 +4,7 @@ import { Spinner } from "@heroui/react";
 const Loading = () => {
     return (
         <div className="min-h-[80vh] w-full flex flex-col items-center justify-center gap-4 bg-white">
-            {/* SunCart থিমের সাথে মিল রেখে 'warning' (Amber) স্পিনার */}
+          
             <Spinner color="warning" size="lg" />
             
             <div className="text-center space-y-1">
