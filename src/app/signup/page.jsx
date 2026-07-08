@@ -15,11 +15,14 @@ import { Check } from "@gravity-ui/icons";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { authClient } from "@/lib/auth-client";
 import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
 
 
 
 
 const SignUpPage = () => {
+
+  const router = useRouter()
   
 const [showPassword, setShowPassword] = useState(false);
 
@@ -39,14 +42,24 @@ const onSubmit = async(e)=>{
      callbackURL: '/'
 });
 
+
 console.log(data,error,'data and error');
 if (error) {
   toast.error(error.message);
   return;
+}if(data){
+  router.push('/')
 }
 
 toast.success("Sign Up Successful");
 }
+const handleGoogleSignUp = async()=>{
+  const data = await authClient.signIn.social({
+    provider: "google",
+    callbackURL: "/"
+  });
+}
+
 
 // asdghasaA12
 // sahadathussain87285634534534@gmail.com
@@ -140,7 +153,7 @@ toast.success("Sign Up Successful");
           </Button>
         </div>
       </Form>
-      <Button className="w-full mt-3 font-bold" variant="outline">
+      <Button onClick={handleGoogleSignUp} className="w-full mt-3 font-bold" variant="outline">
         Sign Up With Google
       </Button>
     </Card>
