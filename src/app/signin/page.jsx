@@ -17,8 +17,6 @@ import { FaEye, FaEyeSlash, FaGoogle } from "react-icons/fa";
 import { toast } from "react-toastify";
 import { authClient } from "@/lib/auth-client";
 
-
-
 const SignInPage = () => {
   const [showPassword, setShowPassword] = useState(false);
 
@@ -28,13 +26,11 @@ const SignInPage = () => {
     const email = e.target.email.value;
     const password = e.target.password.value;
 
-    const { data, error } = await authClient.signIn.email({
+    const { error } = await authClient.signIn.email({
       email,
       password,
       callbackURL: "/",
     });
-
-    console.log(data, error);
 
     if (error) {
       toast.error(error.message);
@@ -45,12 +41,10 @@ const SignInPage = () => {
   };
 
   const handleGoogleSignIn = async () => {
-    const { data, error } = await authClient.signIn.social({
+    const { error } = await authClient.signIn.social({
       provider: "google",
       callbackURL: "/",
     });
-
-    console.log(data, error);
 
     if (error) {
       toast.error(error.message);
@@ -61,107 +55,130 @@ const SignInPage = () => {
   };
 
   return (
-    <Card className="border mx-auto w-[500px] py-10 mt-5">
-      <h1 className="text-center text-2xl font-bold mb-6">Sign In</h1>
+    <div className="flex items-center justify-center py-10 px-4">
+      <Card className="w-full max-w-md border p-8 shadow-lg">
+        <h1 className="text-center text-3xl font-bold mb-6">
+          Sign In
+        </h1>
 
-      <Form
-        className="flex w-96 mx-auto flex-col gap-4"
-        onSubmit={onSubmit}
-      >
-        <TextField
-          isRequired
-          name="email"
-          type="email"
-          validate={(value) => {
-            if (
-              !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value)
-            ) {
-              return "Please enter a valid email address";
-            }
-            return null;
-          }}
+        <Form
+          className="flex flex-col gap-5 w-full"
+          onSubmit={onSubmit}
         >
-          <Label>Email</Label>
-          <Input placeholder="Enter your email" />
-          <FieldError />
-        </TextField>
-
-        <TextField
-          isRequired
-          name="password"
-          validate={(value) => {
-            if (value.length < 8) {
-              return "Password must be at least 8 characters";
-            }
-            if (!/[A-Z]/.test(value)) {
-              return "Password must contain at least one uppercase letter";
-            }
-            if (!/[0-9]/.test(value)) {
-              return "Password must contain at least one number";
-            }
-            return null;
-          }}
-        >
-          <Label>Password</Label>
-
-          <div className="relative w-full">
+          {/* Email */}
+          <TextField
+            isRequired
+            name="email"
+            type="email"
+            validate={(value) => {
+              if (
+                !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value)
+              ) {
+                return "Please enter a valid email address";
+              }
+              return null;
+            }}
+          >
+            <Label>Email</Label>
             <Input
-              type={showPassword ? "text" : "password"}
-              placeholder="Enter your password"
+              className="w-full"
+              placeholder="Enter your email"
             />
+            <FieldError />
+          </TextField>
 
-            <button
-              type="button"
-              onClick={() => setShowPassword(!showPassword)}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-black"
+          {/* Password */}
+          <TextField
+            isRequired
+            name="password"
+            validate={(value) => {
+              if (value.length < 8) {
+                return "Password must be at least 8 characters";
+              }
+              if (!/[A-Z]/.test(value)) {
+                return "Password must contain at least one uppercase letter";
+              }
+              if (!/[0-9]/.test(value)) {
+                return "Password must contain at least one number";
+              }
+              return null;
+            }}
+          >
+            <Label>Password</Label>
+
+            <div className="relative w-full">
+              <Input
+                className="w-full pr-10"
+                type={showPassword ? "text" : "password"}
+                placeholder="Enter your password"
+              />
+
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-black"
+              >
+                {showPassword ? (
+                  <FaEyeSlash className="text-lg" />
+                ) : (
+                  <FaEye className="text-lg" />
+                )}
+              </button>
+            </div>
+
+            <Description>
+              Must be at least 8 characters with 1 uppercase and 1 number
+            </Description>
+
+            <FieldError />
+          </TextField>
+
+          {/* Buttons */}
+          <div className="flex gap-3">
+            <Button type="submit" className="flex-1">
+              <Check />
+              Login
+            </Button>
+
+            <Button
+              type="reset"
+              variant="secondary"
+              className="flex-1"
             >
-              {showPassword ? (
-                <FaEyeSlash className="text-lg" />
-              ) : (
-                <FaEye className="text-lg" />
-              )}
-            </button>
+              Reset
+            </Button>
           </div>
+        </Form>
 
-          <Description>
-            Must be at least 8 characters with 1 uppercase and 1 number
-          </Description>
+        {/* Register Link */}
+        <p className="text-center mt-6">
+          Don't have an account?{" "}
+          <Link
+            href="/signup"
+            className="text-blue-600 font-semibold hover:underline"
+          >
+            Sign Up
+          </Link>
+        </p>
 
-          <FieldError />
-        </TextField>
-
-        <div className="flex gap-2">
-          <Button type="submit">
-            <Check />
-            Submit
-          </Button>
-
-          <Button type="reset" variant="secondary">
-            Reset
-          </Button>
+        {/* Divider */}
+        <div className="flex items-center gap-3 my-6">
+          <div className="h-px flex-1 bg-gray-300" />
+          <span className="text-sm text-gray-500">OR</span>
+          <div className="h-px flex-1 bg-gray-300" />
         </div>
-      </Form>
 
-      <p className="text-center mt-5">
-        Don't have an account?{" "}
-        <Link
-          href="/signup"
-          className="text-blue-600 font-semibold hover:underline"
-        >
-          Sign Up
-        </Link>
-      </p>
-
-      <div className="w-96 mx-auto mt-4">
+        {/* Google Login */}
         <Button
           onClick={handleGoogleSignIn}
-          className="w-full"
           variant="bordered"
+          className="w-full"
         >
-         <FaGoogle/> Login With Google
+          <FaGoogle className="text-red-500" />
+          Continue with Google
         </Button>
-      </div>
-    </Card>
+      </Card>
+    </div>
   );
 };
 
