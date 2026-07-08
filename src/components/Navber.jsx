@@ -64,7 +64,7 @@ const Navbar = () => {
               <>
                 <Link href="/signup">
                   <Button 
-                    variant="bordered" 
+                    variant="outline" 
                     className="border-zinc-300 text-zinc-700 hover:bg-zinc-100 font-medium"
                   >
                     Sign Up
@@ -73,7 +73,8 @@ const Navbar = () => {
 
                 <Link href="/signin">
                   <Button 
-                    className="bg-amber-500 text-white hover:bg-amber-600 font-medium shadow-sm"
+                  variant="outline"
+                    className="  font-medium shadow-sm"
                   >
                     Sign In
                   </Button>
@@ -148,7 +149,7 @@ const Navbar = () => {
                       onClick={() => setIsOpen(false)}
                     >
                       <Button
-                        variant="bordered"
+                        variant="outline"
                         className="w-full border-zinc-300 text-zinc-700"
                       >
                         Sign Up
@@ -162,7 +163,7 @@ const Navbar = () => {
                       onClick={() => setIsOpen(false)}
                     >
                       <Button
-                        className="w-full bg-amber-500 text-white"
+                        className="w-full  text-white"
                       >
                         Sign In
                       </Button>
@@ -191,7 +192,7 @@ const Navbar = () => {
                       </Link>
 
                       <Button
-                        color="danger"
+                        color="outline"
                         radius="full"
                         isIconOnly
                         onPress={handleSignOut}
