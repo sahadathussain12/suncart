@@ -20,6 +20,9 @@ import { useRouter } from "next/navigation";
 
 
 
+
+
+
 const SignUpPage = () => {
 
   const router = useRouter()
@@ -58,6 +61,7 @@ const handleGoogleSignUp = async()=>{
     provider: "google",
     callbackURL: "/"
   });
+  console.log(data,'data is hare ');
 }
 
 

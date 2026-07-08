@@ -1,5 +1,7 @@
 "use client";
 
+import React, { useState } from "react";
+import Link from "next/link";
 import {
   Button,
   Card,
@@ -10,12 +12,12 @@ import {
   Label,
   TextField,
 } from "@heroui/react";
-import React, { useState } from "react";
 import { Check } from "@gravity-ui/icons";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { authClient } from "@/lib/auth-client";
 import { toast } from "react-toastify";
-import Link from "next/link";
+import { authClient } from "@/lib/auth-client";
+
+
 
 const SignInPage = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -32,7 +34,8 @@ const SignInPage = () => {
       callbackURL: "/",
     });
 
-    console.log(data, error, "data and error");
+    console.log(data, error);
+
     if (error) {
       toast.error(error.message);
       return;
@@ -41,22 +44,40 @@ const SignInPage = () => {
     toast.success("Sign In Successful");
   };
 
-  // asdghasaA12
-  // sahadathussain87285634534534@gmail.com
-  return (
-    <Card className="border mx-auto w-125 py-10 mt-5">
-      <h1 className="text-center text-2xl font-bold">Sign In</h1>
+  const handleGoogleSignIn = async () => {
+    const { data, error } = await authClient.signIn.social({
+      provider: "google",
+      callbackURL: "/",
+    });
 
-      <Form className="flex w-96 mx-auto flex-col gap-4" onSubmit={onSubmit}>
+    console.log(data, error);
+
+    if (error) {
+      toast.error(error.message);
+      return;
+    }
+
+    toast.success("Google Sign In Successful");
+  };
+
+  return (
+    <Card className="border mx-auto w-[500px] py-10 mt-5">
+      <h1 className="text-center text-2xl font-bold mb-6">Sign In</h1>
+
+      <Form
+        className="flex w-96 mx-auto flex-col gap-4"
+        onSubmit={onSubmit}
+      >
         <TextField
           isRequired
           name="email"
           type="email"
           validate={(value) => {
-            if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value)) {
+            if (
+              !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value)
+            ) {
               return "Please enter a valid email address";
             }
-
             return null;
           }}
         >
@@ -67,7 +88,6 @@ const SignInPage = () => {
 
         <TextField
           isRequired
-          type="password"
           name="password"
           validate={(value) => {
             if (value.length < 8) {
@@ -88,13 +108,12 @@ const SignInPage = () => {
             <Input
               type={showPassword ? "text" : "password"}
               placeholder="Enter your password"
-              className="w-full"
             />
 
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
-              className="absolute inset-y-0 right-3 flex items-center text-gray-500 hover:text-gray-800"
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-black"
             >
               {showPassword ? (
                 <FaEyeSlash className="text-lg" />
@@ -102,7 +121,6 @@ const SignInPage = () => {
                 <FaEye className="text-lg" />
               )}
             </button>
-            
           </div>
 
           <Description>
@@ -117,12 +135,14 @@ const SignInPage = () => {
             <Check />
             Submit
           </Button>
+
           <Button type="reset" variant="secondary">
             Reset
           </Button>
         </div>
       </Form>
-      <p className="text-center mt-4">
+
+      <p className="text-center mt-5">
         Don't have an account?{" "}
         <Link
           href="/signup"
@@ -131,6 +151,16 @@ const SignInPage = () => {
           Sign Up
         </Link>
       </p>
+
+      <div className="w-96 mx-auto mt-4">
+        <Button
+          onClick={handleGoogleSignIn}
+          className="w-full"
+          variant="bordered"
+        >
+          Login With Google
+        </Button>
+      </div>
     </Card>
   );
 };
