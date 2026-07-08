@@ -1,5 +1,6 @@
 'use client'
 
+import { UpdateProfileModalPage } from "@/components/UpdateProfileModal";
 import { authClient } from "@/lib/auth-client";
 import Image from "next/image";
 import React from "react";
@@ -20,6 +21,8 @@ const ProfilePage = () => {
 
       <h2>{user?.name}</h2>
       <p>{user?.email}</p>
+
+      <UpdateProfileModalPage/>
      
     </div>
 };
