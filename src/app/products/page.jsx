@@ -11,7 +11,7 @@ export const metadata = {
 };
 
 const AllProductPage = async() => {
-    const res = await fetch(`http://localhost:3000/product.json`)
+    const res = await fetch(`https://suncart-kuxb.vercel.app/product.json`)
     const products = await res.json()
     return (
            <div className=''>

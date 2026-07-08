@@ -12,7 +12,7 @@ import {
 } from "@heroui/react";
 import React, { useState } from "react";
 import { Check } from "@gravity-ui/icons";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { FaEye, FaEyeSlash, FaGoogle } from "react-icons/fa";
 import { authClient } from "@/lib/auth-client";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
@@ -158,7 +158,7 @@ const handleGoogleSignUp = async()=>{
         </div>
       </Form>
       <Button onClick={handleGoogleSignUp} className="w-full mt-3 font-bold" variant="outline">
-        Sign Up With Google
+       <FaGoogle/> Sign Up With Google
       </Button>
     </Card>
   );

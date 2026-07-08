@@ -13,7 +13,7 @@ import {
   TextField,
 } from "@heroui/react";
 import { Check } from "@gravity-ui/icons";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { FaEye, FaEyeSlash, FaGoogle } from "react-icons/fa";
 import { toast } from "react-toastify";
 import { authClient } from "@/lib/auth-client";
 
@@ -158,7 +158,7 @@ const SignInPage = () => {
           className="w-full"
           variant="bordered"
         >
-          Login With Google
+         <FaGoogle/> Login With Google
         </Button>
       </div>
     </Card>

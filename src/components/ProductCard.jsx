@@ -4,7 +4,7 @@ import { FaRegStar } from "react-icons/fa";
 import Link from "next/link";
 
 const ProductCard = async () => {
-  const res = await fetch("http://localhost:3000/product.json", {
+  const res = await fetch("https://suncart-kuxb.vercel.app/product.json", {
     cache: "no-store",
   });
 
